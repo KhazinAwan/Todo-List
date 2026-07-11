@@ -1,0 +1,22 @@
+.navbar {
+
+    display: flex;
+    align-items: center;
+
+    height: 80px;
+
+    padding: 0 2rem;
+
+    background-color: var(--primary-color);
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+}
+
+.navbarTitle {
+
+    color: var(--surface-color);
+
+    font-size: 2rem;
+
+}
