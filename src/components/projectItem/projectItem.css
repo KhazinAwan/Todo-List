@@ -1,0 +1,17 @@
+.projectItem {
+
+    width: 100%;
+
+    padding: 0.8rem 1rem;
+
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    text-align: left;
+
+    font: inherit;
+
+}
