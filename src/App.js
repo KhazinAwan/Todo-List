@@ -15,8 +15,12 @@ function createApp() {
     const navbar = createNavbar();
 
     const projectSidebar = createProjectSidebar();
+    const projectList = projectSidebar.querySelector(".projectList");
+    const addProjectButton = projectSidebar.querySelector(".addProjectButton");
 
     const todoContainer = createTodoContainer();
+    const todoList = todoContainer.querySelector(".todoList");
+    const addTodoButton = todoContainer.querySelector(".addTodoButton");
 
     const todoDialog = createTodoDialog();
 
@@ -34,7 +38,20 @@ function createApp() {
         projectDialog
     );
 
-    return mainLayout;
+    return {
+
+        root: mainLayout,
+
+        projectList,
+        todoList,
+
+        addProjectButton,
+        addTodoButton,
+
+        todoDialog,
+        projectDialog
+
+    };
 
 }
 
