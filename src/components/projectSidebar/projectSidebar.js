@@ -1,6 +1,6 @@
 import "./projectSidebar.css";
 
-function createProjectSidebar() {
+function createProjectSidebar(onAddProject) {
 
     const sidebar = document.createElement("aside");
     sidebar.classList.add("projectSidebar");
@@ -15,6 +15,12 @@ function createProjectSidebar() {
     const addProjectButton = document.createElement("button");
     addProjectButton.classList.add("addProjectButton");
     addProjectButton.textContent = "+ New Project";
+
+    addProjectButton.addEventListener("click", () => {
+
+        onAddProject();
+
+    });
 
     sidebar.append(
         heading,

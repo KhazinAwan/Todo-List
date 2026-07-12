@@ -4,7 +4,10 @@ import createTodoContainer from "./components/todoContainer/todoContainer.js";
 import createTodoDialog from "./components/todoDialog/todoDialog.js";
 import createProjectDialog from "./components/projectDialog/projectDialog.js";
 
-function createApp() {
+function createApp(onAddProject, onAddTodo) {
+
+    console.log(onAddProject);
+    console.log(onAddTodo)
 
     const mainLayout = document.createElement("div");
     mainLayout.classList.add("mainLayout");
@@ -14,11 +17,11 @@ function createApp() {
 
     const navbar = createNavbar();
 
-    const projectSidebar = createProjectSidebar();
+    const projectSidebar = createProjectSidebar(onAddProject);
     const projectList = projectSidebar.querySelector(".projectList");
     const addProjectButton = projectSidebar.querySelector(".addProjectButton");
 
-    const todoContainer = createTodoContainer();
+    const todoContainer = createTodoContainer(onAddTodo);
     const todoList = todoContainer.querySelector(".todoList");
     const addTodoButton = todoContainer.querySelector(".addTodoButton");
 
@@ -35,7 +38,7 @@ function createApp() {
         navbar,
         mainContent,
         todoDialog,
-        projectDialog
+        projectDialog,
     );
 
     return {

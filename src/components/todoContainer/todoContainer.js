@@ -1,6 +1,6 @@
 import "./todoContainer.css";
 
-function createTodoContainer() {
+function createTodoContainer(onAddTodo) {
 
     const todoContainer = document.createElement("main");
     todoContainer.classList.add("todoContainer");
@@ -15,6 +15,12 @@ function createTodoContainer() {
     const addTodoButton = document.createElement("button");
     addTodoButton.classList.add("addTodoButton");
     addTodoButton.textContent = "+ New Todo";
+
+    addTodoButton.addEventListener("click", () => {
+
+        onAddTodo();
+
+    });
 
     todoHeader.append(
         heading,

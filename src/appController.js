@@ -31,7 +31,15 @@ function initialize() {
 
     const app = document.getElementById("app");
 
-    ui = createApp();
+    // ui = createApp({
+
+    //     onAddProject: openProjectDialog,
+
+    //     onAddTodo: openTodoDialog
+
+    // });
+
+    ui = createApp(openProjectDialog, openTodoDialog);
 
     app.append(ui.root);
 
@@ -46,6 +54,18 @@ function initialize() {
         ui.todoList,
         appState.currentProject.todos
     );
+
+}
+
+function openProjectDialog() {
+
+    ui.projectDialog.showModal();
+
+}
+
+function openTodoDialog() {
+
+    ui.todoDialog.showModal();
 
 }
 

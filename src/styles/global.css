@@ -35,6 +35,12 @@ body {
 
 }
 
+dialog[open] {
+
+    margin: auto;
+
+}
+
 button {
 
     font: inherit;
