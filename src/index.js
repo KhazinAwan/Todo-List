@@ -1,7 +1,5 @@
 import "./styles/global.css"
-import createApp from "./App.js"
+import { initialize } from "./appController.js"
 
-const app = document.getElementById("app");
-
-app.append(createApp());
+initialize();
 
