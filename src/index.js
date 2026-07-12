@@ -1,5 +1,7 @@
 import "./styles/global.css"
+import createApp from "./App.js"
 
-import app from "./App.js"
+const app = document.getElementById("app");
 
-app();
+app.append(createApp());
+
