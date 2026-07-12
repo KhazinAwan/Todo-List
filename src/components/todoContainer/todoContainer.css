@@ -5,15 +5,24 @@
 
     flex: 1;
 
-    padding: 2rem;
+    padding: 1.5rem;
 
     background-color: var(--background-color);
 
 }
 
-.todoContainerHeading {
+.todoHeader {
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
 
     margin-bottom: 2rem;
+
+}
+
+.todoContainerHeading {
 
     color: var(--text-color);
 
@@ -31,8 +40,6 @@
 }
 
 .addTodoButton {
-
-    align-self: flex-start;
 
     padding: 0.8rem 1.5rem;
 
