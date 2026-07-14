@@ -46,3 +46,19 @@
     font: inherit;
 
 }
+
+.projectItem.activeProject {
+
+    background-color: var(--primary-color);
+
+    color: var(--surface-color);
+
+    font-weight: 600;
+
+}
+
+.projectItem.activeProject:hover {
+
+    background-color: var(--primary-color);
+
+}

@@ -48,7 +48,8 @@ function initialize() {
 
     renderProjects(
         ui.projectList,
-        appState.projects
+        appState.projects,
+        selectProject
     );
 
     renderTodos(
@@ -102,7 +103,8 @@ function saveProject(form) {
 
     renderProjects(
         ui.projectList,
-        appState.projects
+        appState.projects,
+        selectProject
     );
 
     renderTodos(
@@ -113,6 +115,23 @@ function saveProject(form) {
     form.reset();
 
     closeProjectDialog();
+
+}
+
+function selectProject(project) {
+
+    appState.currentProject = project;
+
+    renderProjects(
+        ui.projectList,
+        appState.projects,
+        selectProject
+    );
+
+    renderTodos(
+        ui.todoList,
+        appState.currentProject.todos
+    );
 
 }
 
