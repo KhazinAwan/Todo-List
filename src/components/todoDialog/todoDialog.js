@@ -1,6 +1,6 @@
 import "./todoDialog.css";
 
-function createTodoDialog() {
+function createTodoDialog(onCloseTodoDialog) {
 
     const dialog = document.createElement("dialog");
     dialog.classList.add("todoDialog");
@@ -53,6 +53,12 @@ function createTodoDialog() {
     const cancelButton = document.createElement("button");
     cancelButton.type = "button";
     cancelButton.textContent = "Cancel";
+
+    cancelButton.addEventListener("click", () => {
+
+        onCloseTodoDialog();
+
+    });
 
     buttonContainer.append(
         saveButton,

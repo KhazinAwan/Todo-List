@@ -1,6 +1,6 @@
 import "./projectDialog.css";
 
-function createProjectDialog() {
+function createProjectDialog(onCloseProjectDialog) {
 
     const dialog = document.createElement("dialog");
     dialog.classList.add("projectDialog");
@@ -26,6 +26,14 @@ function createProjectDialog() {
     const cancelButton = document.createElement("button");
     cancelButton.type = "button";
     cancelButton.textContent = "Cancel";
+
+    cancelButton.addEventListener("click", () => {
+
+        console.log("cancel clicked");
+
+        onCloseProjectDialog();
+
+    });
 
     buttonContainer.append(
         saveButton,
