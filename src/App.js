@@ -10,7 +10,9 @@ function createApp(
     onAddTodo,
 
     onCloseProjectDialog,
-    onCloseTodoDialog
+    onCloseTodoDialog,
+
+    onSaveProject
 
 ) {
 
@@ -32,7 +34,7 @@ function createApp(
 
     const todoDialog = createTodoDialog(onCloseTodoDialog);
 
-    const projectDialog = createProjectDialog(onCloseProjectDialog);
+    const projectDialog = createProjectDialog(onCloseProjectDialog, onSaveProject);
 
     mainContent.append(
         projectSidebar,

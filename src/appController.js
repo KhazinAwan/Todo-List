@@ -35,9 +35,11 @@ function initialize() {
 
         openProjectDialog,
         openTodoDialog,
-        
+
         closeProjectDialog,
-        closeTodoDialog
+        closeTodoDialog,
+
+        saveProject
     );
 
     app.append(ui.root);
@@ -77,6 +79,40 @@ function closeProjectDialog() {
 function closeTodoDialog() {
 
     ui.todoDialog.close();
+
+}
+
+function saveProject(form) {
+
+    const formData = new FormData(form);
+
+    const projectName = formData.get("projectName").trim();
+
+    if (projectName === "") {
+
+        return;
+
+    }
+
+    const project = new Project(projectName);
+
+    appState.projects.push(project);
+
+    appState.currentProject = project;
+
+    renderProjects(
+        ui.projectList,
+        appState.projects
+    );
+
+    renderTodos(
+        ui.todoList,
+        appState.currentProject.todos
+    );
+
+    form.reset();
+
+    closeProjectDialog();
 
 }
 

@@ -1,6 +1,6 @@
 import "./projectDialog.css";
 
-function createProjectDialog(onCloseProjectDialog) {
+function createProjectDialog(onCloseProjectDialog, onSaveProject) {
 
     const dialog = document.createElement("dialog");
     dialog.classList.add("projectDialog");
@@ -12,9 +12,15 @@ function createProjectDialog(onCloseProjectDialog) {
 
     const nameLabel = document.createElement("label");
     nameLabel.textContent = "Project Name";
+    nameLabel.htmlFor = "projectName";
 
     const nameInput = document.createElement("input");
     nameInput.type = "text";
+
+    nameInput.id = "projectName";
+    nameInput.name = "projectName";
+
+    nameInput.required = true;
 
     const buttonContainer = document.createElement("div");
     buttonContainer.classList.add("dialogButtons");
@@ -29,9 +35,15 @@ function createProjectDialog(onCloseProjectDialog) {
 
     cancelButton.addEventListener("click", () => {
 
-        console.log("cancel clicked");
-
         onCloseProjectDialog();
+
+    });
+
+    form.addEventListener("submit", (event) => {
+
+        event.preventDefault();
+
+        onSaveProject(form);
 
     });
 
