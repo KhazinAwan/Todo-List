@@ -49,7 +49,8 @@ function initialize() {
     renderProjects(
         ui.projectList,
         appState.projects,
-        selectProject
+        selectProject,
+        deleteProject
     );
 
     renderTodos(
@@ -104,7 +105,8 @@ function saveProject(form) {
     renderProjects(
         ui.projectList,
         appState.projects,
-        selectProject
+        selectProject,
+        deleteProject
     );
 
     renderTodos(
@@ -125,7 +127,46 @@ function selectProject(project) {
     renderProjects(
         ui.projectList,
         appState.projects,
-        selectProject
+        selectProject,
+        deleteProject
+    );
+
+    renderTodos(
+        ui.todoList,
+        appState.currentProject.todos
+    );
+
+}
+
+function deleteProject(project) {
+
+    if (project === appState.projects[0]) {
+
+        return;
+
+    }
+
+    const index = appState.projects.indexOf(project);
+
+    if (index === -1) {
+
+        return;
+
+    }
+
+    appState.projects.splice(index, 1);
+
+    if (appState.currentProject === project) {
+
+        appState.currentProject = appState.projects[0];
+
+    }
+
+    renderProjects(
+        ui.projectList,
+        appState.projects,
+        selectProject,
+        deleteProject
     );
 
     renderTodos(

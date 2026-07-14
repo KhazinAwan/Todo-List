@@ -14,8 +14,13 @@
 
     font: inherit;
 
-}
+    display: flex;
 
+    justify-content: space-between;
+
+    align-items: center;
+
+}
 
 .projectItem:hover {
 
@@ -26,5 +31,19 @@
 .projectItem.activeProject:hover {
 
     box-shadow: none;
+
+}
+
+.deleteProjectButton {
+
+    width: 22px;
+
+    height: 22px;
+
+}
+
+.projectItem.activeProject .deleteProjectButton {
+
+    filter: brightness(0) invert(1);
 
 }

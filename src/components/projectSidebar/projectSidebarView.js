@@ -1,7 +1,7 @@
 import createProjectItem from "../projectItem/projectItem.js";
 import appState from "../../state/appState.js";
 
-function renderProjects(projectList, projects, onSelectProject) {
+function renderProjects(projectList, projects, onSelectProject, onDeleteProject) {
 
     projectList.replaceChildren();
 
@@ -11,7 +11,9 @@ function renderProjects(projectList, projects, onSelectProject) {
 
             project,
 
-            onSelectProject
+            onSelectProject,
+
+            onDeleteProject
 
         );
 

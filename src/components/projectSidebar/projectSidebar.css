@@ -57,8 +57,3 @@
 
 }
 
-.projectItem.activeProject:hover {
-
-    background-color: var(--primary-color);
-
-}
