@@ -7,6 +7,7 @@ function createTodoDialog(onCloseTodoDialog, onSaveTodo) {
 
     const heading = document.createElement("h2");
     heading.textContent = "Todo Details";
+    heading.id = "todoDialogHeading";
 
     const form = document.createElement("form");
 
@@ -68,6 +69,7 @@ function createTodoDialog(onCloseTodoDialog, onSaveTodo) {
     const saveButton = document.createElement("button");
     saveButton.type = "submit";
     saveButton.textContent = "Save";
+    saveButton.id = "todoSaveButton";
 
     const cancelButton = document.createElement("button");
     cancelButton.type = "button";

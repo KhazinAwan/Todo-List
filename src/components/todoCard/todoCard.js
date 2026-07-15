@@ -1,6 +1,6 @@
 import "./todoCard.css";
 
-function createTodoCard(todo, onDeleteTodo) {
+function createTodoCard(todo, onDeleteTodo, onEditTodo) {
 
     const todoCard = document.createElement("article");
     todoCard.classList.add("todoCard");
@@ -27,6 +27,14 @@ function createTodoCard(todo, onDeleteTodo) {
     const editButton = document.createElement("button");
     editButton.classList.add("editTodoButton");
     editButton.textContent = "Edit";
+
+    editButton.addEventListener("click", (event) => {
+
+        event.stopPropagation();
+
+        onEditTodo(todo);
+
+    });
 
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("deleteTodoButton");

@@ -7,6 +7,10 @@ import { renderProjects } from "./components/projectSidebar/projectSidebarView.j
 import { renderTodos } from "./components/todoContainer/todoContainerView.js";
 
 let ui;
+let editingTodo = null;
+let todoForm;
+let todoDialogHeading;
+let todoSaveButton;
 
 function initializeDefaultProject() {
 
@@ -45,6 +49,11 @@ function initialize() {
 
     app.append(ui.root);
 
+
+    todoDialogHeading = ui.todoDialog.querySelector("#todoDialogHeading");
+    todoSaveButton = ui.todoDialog.querySelector("#todoSaveButton");
+    todoForm = ui.todoDialog.querySelector("form");
+
     initializeDefaultProject();
 
     renderProjects(
@@ -57,7 +66,9 @@ function initialize() {
     renderTodos(
         ui.todoList,
         appState.currentProject.todos,
-        deleteTodo
+        deleteTodo,
+        editTodo
+
     );
 
 }
@@ -81,6 +92,14 @@ function closeProjectDialog() {
 }
 
 function closeTodoDialog() {
+
+    editingTodo = null;
+
+    todoForm.reset();
+
+    todoDialogHeading.textContent = "Todo Details";
+
+    todoSaveButton.textContent = "Save";
 
     ui.todoDialog.close();
 
@@ -114,7 +133,8 @@ function saveProject(form) {
     renderTodos(
         ui.todoList,
         appState.currentProject.todos,
-        deleteTodo
+        deleteTodo,
+        editTodo
     );
 
     form.reset();
@@ -137,7 +157,8 @@ function selectProject(project) {
     renderTodos(
         ui.todoList,
         appState.currentProject.todos,
-        deleteTodo
+        deleteTodo,
+        editTodo
     );
 
 }
@@ -176,7 +197,8 @@ function deleteProject(project) {
     renderTodos(
         ui.todoList,
         appState.currentProject.todos,
-        deleteTodo
+        deleteTodo,
+        editTodo
     );
 
 }
@@ -199,24 +221,46 @@ function saveTodo(form) {
 
     }
 
-    const todo = new Todo(
+    if (editingTodo === null) {
 
-        title,
+        const todo = new Todo(
 
-        description,
+            title,
 
-        dueDate,
+            description,
 
-        priority
+            dueDate,
 
-    );
+            priority
 
-    appState.currentProject.addTodo(todo);
+        );
+
+        appState.currentProject.addTodo(todo);
+
+    }
+
+    else {
+
+        editingTodo.title = title;
+
+        editingTodo.description = description;
+
+        editingTodo.dueDate = dueDate;
+
+        editingTodo.priority = priority;
+
+        editingTodo = null;
+
+    }
+
+    todoDialogHeading.textContent = "Todo Details";
+    todoSaveButton.textContent = "Save";
 
     renderTodos(
         ui.todoList,
         appState.currentProject.todos,
-        deleteTodo
+        deleteTodo,
+        editTodo
     );
 
     form.reset();
@@ -238,15 +282,33 @@ function deleteTodo(todo) {
     appState.currentProject.todos.splice(index, 1);
 
     renderTodos(
-
         ui.todoList,
-
         appState.currentProject.todos,
-
-        deleteTodo
-
+        deleteTodo,
+        editTodo
     );
 
 }
+
+function editTodo(todo) {
+
+    editingTodo = todo;
+
+    todoForm.elements.title.value = todo.title;
+
+    todoForm.elements.description.value = todo.description;
+
+    todoForm.elements.dueDate.value = todo.dueDate;
+
+    todoForm.elements.priority.value = todo.priority;
+
+    todoDialogHeading.textContent = "Edit Todo";
+
+    todoSaveButton.textContent = "Update";
+
+    openTodoDialog();
+
+}
+
 
 export { initialize };
