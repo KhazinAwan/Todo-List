@@ -1,5 +1,6 @@
 import "./projectItem.css";
 import deleteIcon from "../../assets/svgs/delete.svg";
+import appState from "../../state/appState.js";
 
 function createProjectItem(project, onSelectProject, onDeleteProject) {
 
@@ -8,21 +9,20 @@ function createProjectItem(project, onSelectProject, onDeleteProject) {
 
     const projectName = document.createElement("span");
     projectName.textContent = project.name;
-    
+
 
     const deleteButton = document.createElement("img");
     deleteButton.src = deleteIcon;
     deleteButton.alt = "Delete Project";
     deleteButton.classList.add("deleteProjectButton");
 
-    projectItem.append( projectName );
+    projectItem.append(projectName);
 
-    if (project.name !== "Default") {
+    if (appState.projects.length > 1) {
 
         projectItem.append(deleteButton);
 
     }
-
     projectItem.addEventListener("click", () => {
 
         console.log("selection", project.name);

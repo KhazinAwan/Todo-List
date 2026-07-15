@@ -5,14 +5,15 @@ import createTodoDialog from "./components/todoDialog/todoDialog.js";
 import createProjectDialog from "./components/projectDialog/projectDialog.js";
 
 function createApp(
-    
+
     onAddProject,
     onAddTodo,
 
     onCloseProjectDialog,
     onCloseTodoDialog,
 
-    onSaveProject
+    onSaveProject,
+    onSaveTodo
 
 ) {
 
@@ -32,7 +33,7 @@ function createApp(
     const todoList = todoContainer.querySelector(".todoList");
     const addTodoButton = todoContainer.querySelector(".addTodoButton");
 
-    const todoDialog = createTodoDialog(onCloseTodoDialog);
+    const todoDialog = createTodoDialog(onCloseTodoDialog, onSaveTodo);
 
     const projectDialog = createProjectDialog(onCloseProjectDialog, onSaveProject);
 

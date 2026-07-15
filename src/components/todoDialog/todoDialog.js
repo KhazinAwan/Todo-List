@@ -1,6 +1,6 @@
 import "./todoDialog.css";
 
-function createTodoDialog(onCloseTodoDialog) {
+function createTodoDialog(onCloseTodoDialog, onSaveTodo) {
 
     const dialog = document.createElement("dialog");
     dialog.classList.add("todoDialog");
@@ -12,25 +12,44 @@ function createTodoDialog(onCloseTodoDialog) {
 
     const titleLabel = document.createElement("label");
     titleLabel.textContent = "Title";
+    titleLabel.htmlFor = "todoTitle";
+
 
     const titleInput = document.createElement("input");
     titleInput.type = "text";
 
+    titleInput.id = "todoTitle";
+    titleInput.name = "title";
+
+    titleInput.required = true;
+
     const descriptionLabel = document.createElement("label");
     descriptionLabel.textContent = "Description";
+    descriptionLabel.htmlFor = "todoDescription";
+
 
     const descriptionInput = document.createElement("textarea");
+    descriptionInput.id = "todoDescription";
+    descriptionInput.name = "description";
 
     const dueDateLabel = document.createElement("label");
     dueDateLabel.textContent = "Due Date";
+    dueDateLabel.htmlFor = "todoDueDate";
+
 
     const dueDateInput = document.createElement("input");
     dueDateInput.type = "date";
+    dueDateInput.id = "todoDueDate";
+    dueDateInput.name = "dueDate";
+
 
     const priorityLabel = document.createElement("label");
     priorityLabel.textContent = "Priority";
+    priorityLabel.htmlFor = "todoPriority";
 
     const priorityInput = document.createElement("select");
+    priorityInput.id = "todoPriority";
+    priorityInput.name = "priority";
 
     ["Low", "Medium", "High"].forEach(priority => {
 
@@ -57,6 +76,14 @@ function createTodoDialog(onCloseTodoDialog) {
     cancelButton.addEventListener("click", () => {
 
         onCloseTodoDialog();
+
+    });
+
+    form.addEventListener("submit", (event) => {
+
+        event.preventDefault();
+
+        onSaveTodo(form);
 
     });
 
@@ -87,7 +114,6 @@ function createTodoDialog(onCloseTodoDialog) {
     );
 
     return dialog;
-
 }
 
 export default createTodoDialog;

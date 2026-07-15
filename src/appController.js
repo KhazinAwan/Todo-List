@@ -39,7 +39,8 @@ function initialize() {
         closeProjectDialog,
         closeTodoDialog,
 
-        saveProject
+        saveProject,
+        saveTodo
     );
 
     app.append(ui.root);
@@ -140,7 +141,7 @@ function selectProject(project) {
 
 function deleteProject(project) {
 
-    if (project === appState.projects[0]) {
+    if (appState.projects.length === 1) {
 
         return;
 
@@ -173,6 +174,52 @@ function deleteProject(project) {
         ui.todoList,
         appState.currentProject.todos
     );
+
+}
+
+function saveTodo(form) {
+
+    const formData = new FormData(form);
+
+    const title = formData.get("title").trim();
+
+    const description = formData.get("description").trim();
+
+    const dueDate = formData.get("dueDate");
+
+    const priority = formData.get("priority");
+
+    if (title === "") {
+
+        return;
+
+    }
+
+    const todo = new Todo(
+
+        title,
+
+        description,
+
+        dueDate,
+
+        priority
+
+    );
+
+    appState.currentProject.addTodo(todo);
+
+    renderTodos(
+
+        ui.todoList,
+
+        appState.currentProject.todos
+
+    );
+
+    form.reset();
+
+    closeTodoDialog();
 
 }
 
