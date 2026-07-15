@@ -1,6 +1,6 @@
 import "./todoCard.css";
 
-function createTodoCard(todo) {
+function createTodoCard(todo, onDeleteTodo) {
 
     const todoCard = document.createElement("article");
     todoCard.classList.add("todoCard");
@@ -31,6 +31,14 @@ function createTodoCard(todo) {
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("deleteTodoButton");
     deleteButton.textContent = "Delete";
+
+    deleteButton.addEventListener("click", (event) => {
+
+        event.stopPropagation();
+
+        onDeleteTodo(todo);
+
+    });
 
     actions.append(
         editButton,

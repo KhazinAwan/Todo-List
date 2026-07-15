@@ -56,7 +56,8 @@ function initialize() {
 
     renderTodos(
         ui.todoList,
-        appState.currentProject.todos
+        appState.currentProject.todos,
+        deleteTodo
     );
 
 }
@@ -112,7 +113,8 @@ function saveProject(form) {
 
     renderTodos(
         ui.todoList,
-        appState.currentProject.todos
+        appState.currentProject.todos,
+        deleteTodo
     );
 
     form.reset();
@@ -134,7 +136,8 @@ function selectProject(project) {
 
     renderTodos(
         ui.todoList,
-        appState.currentProject.todos
+        appState.currentProject.todos,
+        deleteTodo
     );
 
 }
@@ -172,7 +175,8 @@ function deleteProject(project) {
 
     renderTodos(
         ui.todoList,
-        appState.currentProject.todos
+        appState.currentProject.todos,
+        deleteTodo
     );
 
 }
@@ -210,16 +214,38 @@ function saveTodo(form) {
     appState.currentProject.addTodo(todo);
 
     renderTodos(
-
         ui.todoList,
-
-        appState.currentProject.todos
-
+        appState.currentProject.todos,
+        deleteTodo
     );
 
     form.reset();
 
     closeTodoDialog();
+
+}
+
+function deleteTodo(todo) {
+
+    const index = appState.currentProject.todos.indexOf(todo);
+
+    if (index === -1) {
+
+        return;
+
+    }
+
+    appState.currentProject.todos.splice(index, 1);
+
+    renderTodos(
+
+        ui.todoList,
+
+        appState.currentProject.todos,
+
+        deleteTodo
+
+    );
 
 }
 

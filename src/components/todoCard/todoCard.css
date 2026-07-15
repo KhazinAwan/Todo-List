@@ -55,9 +55,27 @@
     border: none;
     border-radius: 6px;
 
+    font: inherit;
+
+}
+
+.editTodoButton {
+
     background-color: var(--primary-color);
     color: var(--surface-color);
 
-    font: inherit;
+}
 
+.deleteTodoButton {
+
+    background-color: crimson;
+    color: var(--surface-color);
+}
+
+.deleteTodoButton:hover,
+.editTodoButton:hover {
+
+    filter: brightness(1.2);
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
