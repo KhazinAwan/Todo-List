@@ -26,6 +26,9 @@
 
     color: var(--text-color);
 
+    font-size: 1.75rem;
+
+
 }
 
 .todoList {

@@ -16,15 +16,6 @@ function initializeDefaultProject() {
 
     const defaultProject = new Project("Default");
 
-    const defaultTodo = new Todo(
-        "Welcome to your Todo List!",
-        "Create a new project or add a new todo to get started.",
-        "2026-07-31",
-        "Medium"
-    );
-
-    defaultProject.addTodo(defaultTodo);
-
     appState.projects.push(defaultProject);
 
     appState.currentProject = defaultProject;

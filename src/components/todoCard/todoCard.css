@@ -3,7 +3,7 @@
     display: flex;
 
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 
     padding: 1rem 1.5rem;
 
@@ -16,12 +16,21 @@
 
 }
 
+.todoContent {
+
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+
+}
+
 .todoInfo {
 
     display: flex;
     flex-direction: column;
 
-    gap: 0.4rem;
+    gap: 1rem;
 
 }
 
@@ -29,13 +38,13 @@
 
     color: var(--text-color);
 
+    font-size: 1.35rem;
+
 }
 
 .todoDueDate {
 
     color: var(--text-color);
-
-    font-size: 0.9rem;
 
 }
 
@@ -54,8 +63,6 @@
 
     border: none;
     border-radius: 6px;
-
-    font: inherit;
 
 }
 
@@ -78,4 +85,22 @@
     filter: brightness(1.2);
 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.todoDetails {
+
+    margin-top: 0.5rem;
+
+}
+
+.todoDetails p:first-child {
+
+    white-space: pre-wrap;
+
+}
+
+.todoDetails p {
+
+    margin-bottom: 0.5rem;
+
 }

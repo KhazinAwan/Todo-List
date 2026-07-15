@@ -5,8 +5,13 @@ function createTodoCard(todo, onDeleteTodo, onEditTodo) {
     const todoCard = document.createElement("article");
     todoCard.classList.add("todoCard");
 
+    const todoContent = document.createElement("div");
+    todoContent.classList.add("todoContent");
+
     const todoInfo = document.createElement("div");
     todoInfo.classList.add("todoInfo");
+
+    let expanded = false;
 
     const title = document.createElement("h3");
     title.classList.add("todoTitle");
@@ -14,12 +19,31 @@ function createTodoCard(todo, onDeleteTodo, onEditTodo) {
 
     const dueDate = document.createElement("p");
     dueDate.classList.add("todoDueDate");
-    dueDate.textContent = todo.dueDate;
+    dueDate.textContent = `Due Date: ${todo.dueDate}`;
 
     todoInfo.append(
         title,
         dueDate
     );
+
+    const todoDetails = document.createElement("div");
+    todoDetails.classList.add("todoDetails");
+
+    const description = document.createElement("p");
+    description.textContent = `Description: ${todo.description}`;
+
+    const priority = document.createElement("p");
+    priority.textContent = `Priority: ${todo.priority}`;
+
+    todoDetails.append(
+
+        description,
+
+        priority
+
+    );
+
+    todoDetails.style.display = "none";
 
     const actions = document.createElement("div");
     actions.classList.add("todoActions");
@@ -53,10 +77,23 @@ function createTodoCard(todo, onDeleteTodo, onEditTodo) {
         deleteButton
     );
 
-    todoCard.append(
+    todoContent.append(
         todoInfo,
+        todoDetails
+);
+
+    todoCard.append(
+        todoContent,
         actions
     );
+
+    todoCard.addEventListener("click", () => {
+
+        expanded = !expanded;
+
+        todoDetails.style.display = expanded ? "block" : "none";
+
+    });
 
     return todoCard;
 
