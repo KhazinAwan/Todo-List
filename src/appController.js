@@ -6,6 +6,8 @@ import Todo from "./models/todo.js";
 import { renderProjects } from "./components/projectSidebar/projectSidebarView.js";
 import { renderTodos } from "./components/todoContainer/todoContainerView.js";
 
+import { saveState, loadState } from "./state/storage.js";
+
 let ui;
 let editingTodo = null;
 let todoForm;
@@ -45,7 +47,55 @@ function initialize() {
     todoSaveButton = ui.todoDialog.querySelector("#todoSaveButton");
     todoForm = ui.todoDialog.querySelector("form");
 
-    initializeDefaultProject();
+    const savedState = loadState();
+
+    if (savedState === null) {
+
+        initializeDefaultProject();
+
+        saveState(appState);
+
+    }
+
+    else {
+
+        const rebuiltProjects = savedState.projects.map((savedProject) => {
+
+            const project = new Project(savedProject.name);
+
+            savedProject.todos.forEach((savedTodo) => {
+
+                const todo = new Todo(
+
+                    savedTodo.title,
+
+                    savedTodo.description,
+
+                    savedTodo.dueDate,
+
+                    savedTodo.priority
+
+                );
+
+                todo.completed = savedTodo.completed;
+
+                project.addTodo(todo);
+
+            });
+
+            return project;
+
+        });
+
+        appState.projects = rebuiltProjects;
+
+        appState.currentProject = rebuiltProjects.find(
+
+            (project) => project.name === savedState.currentProject.name 
+
+        ) || rebuiltProjects[0];
+
+    }
 
     renderProjects(
         ui.projectList,
@@ -115,6 +165,8 @@ function saveProject(form) {
 
     appState.currentProject = project;
 
+    saveState(appState);
+
     renderProjects(
         ui.projectList,
         appState.projects,
@@ -139,6 +191,8 @@ function saveProject(form) {
 function selectProject(project) {
 
     appState.currentProject = project;
+
+    saveState(appState);
 
     renderProjects(
         ui.projectList,
@@ -180,6 +234,8 @@ function deleteProject(project) {
         appState.currentProject = appState.projects[0];
 
     }
+
+    saveState(appState);
 
     renderProjects(
         ui.projectList,
@@ -251,6 +307,8 @@ function saveTodo(form) {
     todoDialogHeading.textContent = "Todo Details";
     todoSaveButton.textContent = "Save";
 
+    saveState(appState);
+
     renderTodos(
         ui.todoList,
         appState.currentProject.todos,
@@ -276,6 +334,8 @@ function deleteTodo(todo) {
     }
 
     appState.currentProject.todos.splice(index, 1);
+
+    saveState(appState);
 
     renderTodos(
         ui.todoList,
@@ -310,6 +370,8 @@ function editTodo(todo) {
 function toggleTodoComplete(todo) {
 
     todo.completed = !todo.completed;
+
+    saveState(appState);
 
     renderTodos(
 
