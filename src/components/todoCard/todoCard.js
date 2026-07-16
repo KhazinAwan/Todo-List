@@ -1,6 +1,6 @@
 import "./todoCard.css";
 
-function createTodoCard(todo, onDeleteTodo, onEditTodo) {
+function createTodoCard(todo, onDeleteTodo, onEditTodo, onToggleComplete) {
 
     const todoCard = document.createElement("article");
     todoCard.classList.add("todoCard");
@@ -13,16 +13,34 @@ function createTodoCard(todo, onDeleteTodo, onEditTodo) {
 
     let expanded = false;
 
+    const titleContainer = document.createElement("div");
+    titleContainer.classList.add("titleContainer");
+
+    if (todo.completed) {
+
+        const tick = document.createElement("span");
+
+        tick.classList.add("completedTick");
+
+        tick.textContent = "✓";
+
+        titleContainer.append(tick);
+
+    }
+
     const title = document.createElement("h3");
     title.classList.add("todoTitle");
     title.textContent = todo.title;
+
+    titleContainer.append(title);
+
 
     const dueDate = document.createElement("p");
     dueDate.classList.add("todoDueDate");
     dueDate.textContent = `Due Date: ${todo.dueDate}`;
 
     todoInfo.append(
-        title,
+        titleContainer,
         dueDate
     );
 
@@ -47,6 +65,18 @@ function createTodoCard(todo, onDeleteTodo, onEditTodo) {
 
     const actions = document.createElement("div");
     actions.classList.add("todoActions");
+
+    const completeButton = document.createElement("button");
+    completeButton.classList.add("completeTodoButton");
+    completeButton.textContent = todo.completed ? "Undo" : "Complete";
+
+    completeButton.addEventListener("click", (event) => {
+
+        event.stopPropagation();
+
+        onToggleComplete(todo);
+
+    });
 
     const editButton = document.createElement("button");
     editButton.classList.add("editTodoButton");
@@ -73,6 +103,7 @@ function createTodoCard(todo, onDeleteTodo, onEditTodo) {
     });
 
     actions.append(
+        completeButton,
         editButton,
         deleteButton
     );
@@ -80,7 +111,7 @@ function createTodoCard(todo, onDeleteTodo, onEditTodo) {
     todoContent.append(
         todoInfo,
         todoDetails
-);
+    );
 
     todoCard.append(
         todoContent,
@@ -94,6 +125,12 @@ function createTodoCard(todo, onDeleteTodo, onEditTodo) {
         todoDetails.style.display = expanded ? "block" : "none";
 
     });
+
+    if (todo.completed) {
+
+        todoCard.classList.add("completedTodo");
+
+    }
 
     return todoCard;
 

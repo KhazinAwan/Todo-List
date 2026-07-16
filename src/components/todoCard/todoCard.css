@@ -14,6 +14,16 @@
 
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 
+    cursor: pointer;
+
+}
+
+.todoCard:hover {
+
+    border-color: var(--primary-color);
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+
 }
 
 .todoContent {
@@ -57,7 +67,8 @@
 }
 
 .editTodoButton,
-.deleteTodoButton {
+.deleteTodoButton,
+.completeTodoButton {
 
     padding: 0.5rem 1rem;
 
@@ -66,7 +77,8 @@
 
 }
 
-.editTodoButton {
+.editTodoButton,
+.completeTodoButton {
 
     background-color: var(--primary-color);
     color: var(--surface-color);
@@ -80,7 +92,8 @@
 }
 
 .deleteTodoButton:hover,
-.editTodoButton:hover {
+.editTodoButton:hover,
+.completeTodoButton:hover {
 
     filter: brightness(1.2);
 
@@ -102,5 +115,38 @@
 .todoDetails p {
 
     margin-bottom: 0.5rem;
+
+}
+
+.completedTodo {
+
+    border: 1px solid #22c55e;
+}
+
+.completedTodo .todoTitle,
+.completedTodo .todoDueDate,
+.completedTodo .todoDetails {
+
+    color: #888;
+
+}
+
+.titleContainer {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+}
+
+.completedTick {
+
+    color: #22c55e;
+
+    font-size: 1.5rem;
+
+    font-weight: bold;
 
 }

@@ -58,7 +58,8 @@ function initialize() {
         ui.todoList,
         appState.currentProject.todos,
         deleteTodo,
-        editTodo
+        editTodo,
+        toggleTodoComplete
 
     );
 
@@ -125,7 +126,8 @@ function saveProject(form) {
         ui.todoList,
         appState.currentProject.todos,
         deleteTodo,
-        editTodo
+        editTodo,
+        toggleTodoComplete
     );
 
     form.reset();
@@ -149,7 +151,8 @@ function selectProject(project) {
         ui.todoList,
         appState.currentProject.todos,
         deleteTodo,
-        editTodo
+        editTodo,
+        toggleTodoComplete
     );
 
 }
@@ -189,7 +192,8 @@ function deleteProject(project) {
         ui.todoList,
         appState.currentProject.todos,
         deleteTodo,
-        editTodo
+        editTodo,
+        toggleTodoComplete
     );
 
 }
@@ -251,7 +255,8 @@ function saveTodo(form) {
         ui.todoList,
         appState.currentProject.todos,
         deleteTodo,
-        editTodo
+        editTodo,
+        toggleTodoComplete
     );
 
     form.reset();
@@ -276,7 +281,8 @@ function deleteTodo(todo) {
         ui.todoList,
         appState.currentProject.todos,
         deleteTodo,
-        editTodo
+        editTodo,
+        toggleTodoComplete
     );
 
 }
@@ -298,6 +304,26 @@ function editTodo(todo) {
     todoSaveButton.textContent = "Update";
 
     openTodoDialog();
+
+}
+
+function toggleTodoComplete(todo) {
+
+    todo.completed = !todo.completed;
+
+    renderTodos(
+
+        ui.todoList,
+
+        appState.currentProject.todos,
+
+        deleteTodo,
+
+        editTodo,
+
+        toggleTodoComplete
+
+    );
 
 }
 
